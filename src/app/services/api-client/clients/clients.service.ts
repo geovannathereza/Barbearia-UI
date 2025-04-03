@@ -5,13 +5,9 @@ import { SaveClientRequest, SaveClientResponse, UpdateClientRequest, UpdateClien
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ClientsService implements ICLientService {
-
   private readonly basePath = environment.apiUrl
-
   constructor(private http: HttpClient) { }
 
   save(request: SaveClientRequest): Observable<SaveClientResponse> {
