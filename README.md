@@ -1,1 +1,3 @@
-criar um projeto Angular para agendamento de atendimento em uma barbearia, vamos usar a lib do Material e assim explorar alguns conceitos do framework Angular
+# Criando um APP Full Stack de Agendamento de Barbearia com Java e Angular
+criação de um projeto front-end para agendamento de atendimento em uma barbearia.
+
