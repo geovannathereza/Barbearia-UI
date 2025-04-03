@@ -20,7 +20,6 @@ import { ClientFormComponent } from '../components/client-form/client-form.compo
   ]
 })
 export class NewClientComponent implements OnDestroy {
-
   private httpSubscription?: Subscription
 
   constructor(
@@ -30,9 +29,7 @@ export class NewClientComponent implements OnDestroy {
   ) { }
 
   ngOnDestroy(): void {
-    if (this.httpSubscription) {
-      this.httpSubscription.unsubscribe()
-    }
+    if (this.httpSubscription) { this.httpSubscription.unsubscribe() }
   }
 
   onSubmitClient(value: ClientModelForm) {
@@ -42,6 +39,4 @@ export class NewClientComponent implements OnDestroy {
       this.router.navigate(['clients/list'])
     })
   }
-
-
 }
