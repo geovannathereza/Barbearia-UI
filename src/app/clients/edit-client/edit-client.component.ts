@@ -20,9 +20,7 @@ import { ClientFormComponent } from '../components/client-form/client-form.compo
   ]
 })
 export class EditClientComponent implements OnInit, OnDestroy {
-
   private httpsubscriptions: Subscription[] = []
-
   client: ClientModelForm = { id: 0, name: '', email: '', phone: '' }
 
   constructor(
@@ -31,7 +29,6 @@ export class EditClientComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router
   ) { }
-
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -43,9 +40,7 @@ export class EditClientComponent implements OnInit, OnDestroy {
     this.httpsubscriptions?.push(this.httpService.findById(Number(id)).subscribe(data => this.client = data))
   }
 
-  ngOnDestroy(): void {
-    this.httpsubscriptions.forEach(s => s.unsubscribe())
-  }
+  ngOnDestroy(): void { this.httpsubscriptions.forEach(s => s.unsubscribe()) }
 
   onSubmitClient(value: ClientModelForm) {
     const { id, ...request } = value
@@ -53,12 +48,10 @@ export class EditClientComponent implements OnInit, OnDestroy {
       this.httpsubscriptions?.push(this.httpService.update(id, request).subscribe(_ => {
         this.snackBarManager.show('Usuário autalizado com sucesso')
         this.router.navigate(['clients/list'])
-
       }))
       return
     }
     this.snackBarManager.show('Um erro inesperado aconteceu')
     this.router.navigate(['clients/list'])
   }
-
 }
