@@ -41,30 +41,23 @@ import { Subscription } from 'rxjs';
   styleUrl: './schedule-calendar.component.scss',
   providers: [
     provideNativeDateAdapter(),
-    {
-      provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService
-    }
+    { provide: SERVICES_TOKEN.DIALOG, useClass: DialogManagerService }
   ]
 })
 export class ScheduleCalendarComponent implements OnDestroy, AfterViewInit, OnChanges {
 
   private subscription?: Subscription
-
   private _selected: Date = new Date();
 
   displayedColumns: string[] = ['startAt', 'endAt', 'client', 'actions'];
-
   dataSource!: MatTableDataSource<ClientScheduleAppointmentModel>
-
   addingSchedule: boolean = false
-
   newSchedule: SaveScheduleModel = { startAt: undefined, endAt: undefined, clientId: undefined }
-
   clientSelectFormControl = new FormControl()
 
   @Input() monthSchedule!: ScheduleAppointementMonthModel
   @Input() clients: SelectClientModel[] = []
-
+  
   @Output() onDateChange = new EventEmitter<Date>()
   @Output() onConfirmDelete = new EventEmitter<ClientScheduleAppointmentModel>()
   @Output() onScheduleClient = new EventEmitter<SaveScheduleModel>()
@@ -73,9 +66,7 @@ export class ScheduleCalendarComponent implements OnDestroy, AfterViewInit, OnCh
 
   constructor(@Inject(SERVICES_TOKEN.DIALOG) private readonly dialogManagerService: IDialogManagerService) { }
 
-  get selected(): Date {
-    return this._selected
-  }
+  get selected(): Date { return this._selected }
 
   set selected(selected: Date) {
     if (this._selected.getTime() !== selected.getTime()) {
@@ -86,9 +77,7 @@ export class ScheduleCalendarComponent implements OnDestroy, AfterViewInit, OnCh
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe()
-    }
+    if (this.subscription) { this.subscription.unsubscribe() }
   }
 
   ngAfterViewInit(): void {
@@ -155,5 +144,4 @@ export class ScheduleCalendarComponent implements OnDestroy, AfterViewInit, OnCh
       this.dataSource.paginator = this.paginator
     }
   }
-
 }
