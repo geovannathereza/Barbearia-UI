@@ -25,17 +25,13 @@ import { CustomPaginator } from './custom-paginator';
 export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input() clients: ClientModelTable[] = []
-
   dataSource!: MatTableDataSource<ClientModelTable>
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   displayedColumns: string[] = ['name', 'email', 'phone', 'actions']
-
   private dialogManagerServiceSubscriptions?: Subscription
 
   @Output() onConfirmDelete = new EventEmitter<ClientModelTable>()
-
   @Output() onRequestUpdate = new EventEmitter<ClientModelTable>()
 
   constructor(
@@ -54,18 +50,12 @@ export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy
     }
   }
   ngOnDestroy(): void {
-    if (this.dialogManagerServiceSubscriptions) {
-      this.dialogManagerServiceSubscriptions.unsubscribe()
-    }
+    if (this.dialogManagerServiceSubscriptions) { this.dialogManagerServiceSubscriptions.unsubscribe() }
   }
 
-  formatPhone(phone: string) {
-    return `( ${phone.substring(0, 2)} ) ${phone.substring(2, 7)} - ${phone.substring(7)}`
-  }
+  formatPhone(phone: string) { return `( ${phone.substring(0, 2)} ) ${phone.substring(2, 7)} - ${phone.substring(7)}`}
 
-  update(client: ClientModelTable) {
-    this.onRequestUpdate.emit(client)
-  }
+  update(client: ClientModelTable) { this.onRequestUpdate.emit(client) }
 
   delete(client: ClientModelTable) {
     this.dialogManagerService.showYesNoDialog(
@@ -80,5 +70,4 @@ export class ClientTableComponent implements AfterViewInit, OnChanges, OnDestroy
         }
       })
   }
-
 }
