@@ -12,9 +12,6 @@ import { Router } from '@angular/router';
 export class MenuBarComponent {
 
   constructor(private readonly router: Router) { }
-
-  navigateTo(path: string) {
-    this.router.navigate([path])
-  }
+  navigateTo(path: string) { this.router.navigate([path]) }
 
 }
