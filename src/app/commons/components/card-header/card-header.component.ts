@@ -7,6 +7,4 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './card-header.component.html',
   styleUrl: './card-header.component.scss'
 })
-export class CardHeaderComponent {
-
-}
+export class CardHeaderComponent { }
