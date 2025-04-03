@@ -23,7 +23,6 @@ import { SaveScheduleRequest } from '../../services/api-client/schedules/schedul
   ]
 })
 export class SchedulesMonthComponent implements OnInit, OnDestroy {
-
   private subscriptions: Subscription[] = []
   private selectedDate?: Date
 
@@ -41,18 +40,14 @@ export class SchedulesMonthComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.clientHttpService.list().subscribe(data => this.clients = data))
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(s => s.unsubscribe())
-  }
+  ngOnDestroy(): void { this.subscriptions.forEach(s => s.unsubscribe()) }
 
   onDateChange(date: Date) {
     this.selectedDate = date
     this.fetchSchedules(date)
   }
 
-  onConfirmDelete(schedule: ClientScheduleAppointmentModel) {
-    this.subscriptions.push(this.httpService.delete(schedule.id).subscribe())
-  }
+  onConfirmDelete(schedule: ClientScheduleAppointmentModel) { this.subscriptions.push(this.httpService.delete(schedule.id).subscribe()) }
 
   onScheduleClient(schedule: SaveScheduleModel) {
     if (schedule.startAt && schedule.endAt && schedule.clientId) {
@@ -71,5 +66,4 @@ export class SchedulesMonthComponent implements OnInit, OnDestroy {
     const month = currentDate.getMonth() + 1;
     this.subscriptions.push(this.httpService.listInMonth(year, month).subscribe(data => this.monthSchedule = data));
   }
-
 }
